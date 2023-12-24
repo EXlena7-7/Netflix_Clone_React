@@ -1,13 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { login, logout, selectUser } from './features/UserSlice';
 import { auth } from './firebase';
 import  Home  from './pages/Home';
 import Login  from './pages/Login';
-import { login, logout, selectUser } from './features/UserSlice';
 import Paypal from './pages/Paypal';
 import Profile from './pages/Profile';
-import { useDispatch, useSelector } from 'react-redux';
 
 
 function App() {
@@ -33,9 +33,10 @@ function App() {
     
     <div className={classes.root}>
      <Router>
-    {
-      !user ? (<Login/>) :(
-        <Switch>
+          <Switch>
+           <Route path='/login'>
+            <Login />
+          </Route>
           <Route path='/profile'>
             <Profile />
           </Route>
@@ -46,9 +47,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
-      )
-    }
-     </Router>
+      </Router>
     </div>
   );
 }

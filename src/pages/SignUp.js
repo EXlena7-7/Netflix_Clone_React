@@ -2,6 +2,7 @@ import { Typography, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react'
 import { NetflixButton, NetflixInput } from '../styled/stykedcomponents';
 import { auth } from '../firebase';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 // import {  createUserWithEmailPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 
@@ -9,16 +10,18 @@ const SignUp = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory()
+
   const signIn = (e) => {
     e.preventDefault();
     auth.signInWithEmailAndPassword(email, password)
-    .then((authUser) => console.log(authUser))
+    .then((authUser) => history.push("/"))
     .catch((err) => alert(err.message));
   }
   const register = (e) => {
     e.preventDefault();
     auth.createUserWithEmailPassword(email, password)
-    .then(authUser => console.log(authUser))
+    .then(authUser => history.push("/"))
     .catch(err=> alert(err.message))
   }
 

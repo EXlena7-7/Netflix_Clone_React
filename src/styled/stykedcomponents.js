@@ -25,6 +25,7 @@ border-radius:${({radius})=> (radius ? "5px" : null)};
 text-transform:inherit;
 padding: 15px;
 font-size:1.1rem;
+border: none;
 outline:none;
 cursor:pointer;
 width: ${({wide})=> handleWidth(wide)}
